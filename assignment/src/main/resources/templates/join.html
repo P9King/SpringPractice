@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+</head>
+<body>
+  <div class = "wrapper">
+    <form id = "joinForm"  onsubmit="return false">
+      <div><input id="email" type="text" name="email" placeholder="email"/></div>
+      <div><input id="password" type="password" name="password" placeholder="password"/></div>
+      <div><input id="name" type="text" name="name" placeholder="name"/></div>
+      <div><input id="nickname" type="text" name="nickname" placeholder="nickname"/></div>
+      <div><input type="submit" onclick="joinMember()">회원가입</div>
+    </form>
+  </div>
+
+  <script th:inline="javascript">
+
+  function joinMember() {
+    let formData = new FormData($('#joinForm')[0]);
+    console.log(formData);
+
+    $.ajax({
+      url : "/member/join",
+      type : "POST",
+      data : formData,
+      contentType : false,
+      processData: false,
+      success: function (data){
+        console.log(data);
+      }
+
+    })
+
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<body>
+afterLogin
+
+
+<table>
+    <tr>
+        <form id="insertMovieList" onsubmit="return false">
+            <td><input type="text" name="title" placeholder="영화제목"/></td>
+            <td><input type="text" name="runtime" placeholder="상영시간"/></td>
+            <td>
+                <select name="genre">
+                    <option value="10">액션</option>
+                    <option value="20">에로</option>
+                    <option value="30">코믹</option>
+                    <option value="40">멜로</option>
+                    <option value="50">공포</option>
+                </select>
+            </td>
+            <td><input type="submit" onclick="insertMovie()"></td>
+        </form>
+    </tr>
+
+    <!--영화 정보 컬럼-->
+    <tr>
+        <td>영화제목</td>
+        <td>영화상영시간</td>
+        <td>영화장르</td>
+    </tr>
+    <!--영화를 추가할 때마다 생성 될 자리-->
+    <tr class = "movieList">
+
+
+    </tr>
+    <tr></tr>
+    <tr></tr>
+
+</table>
+<div th:each="list:${movieList}">
+    [[${list}]]
+</div>
+
+<h4 th:text="${myLog}"></h4>
+
+
+<script th:inline="javascript">
+
+    function insertMovie() {
+        /*let insertMovieListData = $('#insertMovieList');*/
+        let formData = new FormData($('#insertMovieList')[0]);
+        console.log(formData);
+        $.ajax({
+            url: '/afterLogin',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (data) {
+                $('.movieList').html(data);
+
+            }
+
+        })
+
+    }
+
+
+</script>
+</body>
+</html>

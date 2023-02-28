@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+</head>
+<body>
+  this is main
+
+  <form action="/member/login" method="post">
+      <input name="email" type="text" placeholder="email"/>
+      <input name="password" type="password" placeholder="password"/>
+      <input type="submit" value="로그인"/>
+  </form>
+
+  <br/><br/>
+
+  <a th:href="@{/member/join}"><p>회원가입</p></a>
+  <a th:href="@{/member/updateMember}"><p>회원정보 수정</p></a>
+
+</body>
+</html>
